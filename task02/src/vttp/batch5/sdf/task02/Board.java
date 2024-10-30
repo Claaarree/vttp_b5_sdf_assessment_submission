@@ -50,10 +50,12 @@ public class Board{
             System.out.println("File not found!");
             System.out.println(e.getMessage());
             e.printStackTrace();
+            System.exit(-1);
         } catch (IOException e) {
             System.out.println("Error in reading file!");
             System.out.println(e.getMessage());
             e.printStackTrace();
+            System.exit(-1);
         }
         return this.board;
     }

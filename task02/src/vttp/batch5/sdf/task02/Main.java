@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args){
 		if (args.length!= 1){
 			System.out.println("Please input valid board configuration file!");
 			System.out.println("Usage: java -cp task02/classes vttp/batch5/sdf/task02/Main <board configuration file>");

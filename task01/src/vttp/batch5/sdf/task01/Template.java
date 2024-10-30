@@ -15,13 +15,13 @@ public class Template {
     public static void printTemplate(List<BikeEntry> entriesList){
         for (int i = 0; i < POSITION.length; i++ ){
             BikeEntry entry = entriesList.get(i);
-            System.out.printf("The %s recorded number of cyclists was in %s, on a %s, in the month of %s.\n", 
+            System.out.printf("The %s (position) recorded number of cyclists was in %s (season), on a %s (day) in the month of %s (month).\n", 
             POSITION[i], Utilities.toSeason(entry.getSeason()), Utilities.toWeekday(entry.getWeekday()), Utilities.toMonth(entry.getMonth()));
 
-            System.out.printf("There were a total of %d cyclists.The weather was %s.\n", 
+            System.out.printf("There were a total of %d (total) cyclists. The weather was %s (weather).\n", 
             entry.getCasual() + entry.getRegistered(), toWeather(entry.getWeather()));
 
-            System.out.printf("%s was %s.\n\n", Utilities.toWeekday(entry.getWeekday()), toHoliday(entry.isHoliday()));
+            System.out.printf("%s (day) was %s.\n\n", Utilities.toWeekday(entry.getWeekday()), toHoliday(entry.isHoliday()));
 
         }
     }

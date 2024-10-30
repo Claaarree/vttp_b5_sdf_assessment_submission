@@ -28,7 +28,6 @@ public class CSVReader {
             fr.close();
 
         } catch (IOException e) {
-            // TODO: handle exception
             System.out.println("Error in reading CSV file!");
             System.out.println(e.getMessage());
             e.printStackTrace();

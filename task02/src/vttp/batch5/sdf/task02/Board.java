@@ -6,15 +6,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Board{
     private char[][] board = new char[3][3];
     private List<String> emptyPos = new ArrayList<>(); 
+    private int xCount = 0;
+    private int oCount = 0;
 
 
     public char[][] getBoard() {
         return board;
+    }
+
+    public int getxCount() {
+        return xCount;
+    }
+
+    public int getoCount() {
+        return oCount;
     }
 
     public char[][] initBoard(File boardToConfig){
@@ -23,6 +35,11 @@ public class Board{
             for (int i = 0; i < this.board.length; i++){
                 for (int j = 0; j < this.board[i].length; j++){
                     this.board[i][j] = (char)fr.read();
+                    if (this.board[i][j] == 'X'){
+                        this.xCount++;
+                    } else if(this.board[i][j] == 'O'){
+                        this.oCount++;
+                    }
                 }
                 //getting rid of the 'space' behind each row
                 fr.read();
@@ -39,6 +56,12 @@ public class Board{
             e.printStackTrace();
         }
         return this.board;
+    }
+
+    public boolean checkXturn(){
+        if (xCount > oCount){
+            return false;
+        } else return true;
     }
 
     public void printBoard(){
@@ -118,5 +141,28 @@ public class Board{
         return 0;
     }
 
-    
+    public void printUtility(){
+        Map <String, Integer> utilityMap = new LinkedHashMap<>();
+		for (String p : emptyPos){
+			int y = Integer.parseInt(p.split(":")[0]);
+			int x = Integer.parseInt(p.split(":")[1]); 
+			
+			//play move
+			board[y][x] = 'X';
+			int utility = evaluate();
+			utilityMap.put(p, utility);
+
+			//undo move
+			board[y][x] = '.';
+		}
+
+		System.out.println("-------------------------------");
+
+		//printing utility for each empty move on the board
+		for (String p : utilityMap.keySet()){
+			int y = Integer.parseInt(p.split(":")[0]);
+			int x = Integer.parseInt(p.split(":")[1]); 
+			System.out.printf("y=%d, x=%d, utility=%d\n", y, x, utilityMap.get(p));
+		}
+    }
 }

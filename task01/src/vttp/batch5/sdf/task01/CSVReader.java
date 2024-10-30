@@ -14,8 +14,8 @@ public class CSVReader {
             BufferedReader br = new BufferedReader(fr);
     
             //Getting rid of heading row
-            String heading = br.readLine();
-            //System.out.println(heading);
+            br.readLine();
+            
     
             //Starting to read data proper
             String line = "";
